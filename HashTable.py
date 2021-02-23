@@ -40,12 +40,13 @@ class HashTable:
   def insert(self, key, value):
     index = self.hash_func(key)
     if key in self.arr:
+      value = self.arr[index]
       value += 1
-      self.arr[index].append(value)
-      return
+      LinkedList.append(self.arr[index], value)
+      return self.arr
     else:
-      self.arr[index].append(value)
-      return
+      LinkedList.append(self.arr[index], value)
+      return self.arr
 
 
 
@@ -63,7 +64,12 @@ class HashTable:
 
   def print_key_values(self):
     for i in range(len(self.arr)):
-      print(self.arr[i])
+      LinkedList.print_nodes(self.arr[i])
 
 
+table = HashTable(8)
+table.insert("key", 1)
+table.insert("dog", 1)
+table.insert("key", 1)
 
+table.print_key_values()
