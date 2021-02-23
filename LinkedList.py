@@ -16,21 +16,21 @@ class LinkedList:
 
     current = self.head
 
-    found = False
     counter = 0
 
-    while current != None and not found:
-
-      if current.data == item:
-        found = True
-      else:
+    for i in range(self.length()):
+      if current.data.keys() == item:
         current = current.next
         counter += 1
+      else:
+        current = current.next
 
-    if found:
+    if counter > 0:
       return counter
     else:
       return -1
+
+    
 
 
 

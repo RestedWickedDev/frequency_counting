@@ -40,11 +40,18 @@ class HashTable:
   def insert(self, key, value):
     index = self.hash_func(key)
     kv_pair = {key : value}
-    counter = self.arr[index].find(kv_pair.keys()) 
+    counter = self.arr[index].find(kv_pair.keys())
     if counter >= 0:
-      self.arr[index].append(kv_pair.keys())
+      current = self.arr[index].head
+      for i in range(self.arr[index].length()):
+        if current.data.keys() == kv_pair.keys():
+          current_value = list(current.data.values())[0]
+          current.data.update({key : current_value + counter})
+          current = current.next
+        else:
+          current = current.next
     else:
-      self.arr[index].append(kv_pair.keys())
+      self.arr[index].append(kv_pair)
     return self.arr
 
 
@@ -73,15 +80,3 @@ class HashTable:
           current = current.next
 
     
-table = HashTable(8)
-
-table.insert('cat', 1)
-table.insert('dog', 1)
-table.insert('cot', 1)
-table.insert('cat', 1)
-table.insert('dog', 1)
-table.insert('cot', 1)
-
-
-
-table.print_key_values()
