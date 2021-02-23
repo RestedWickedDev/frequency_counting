@@ -39,14 +39,13 @@ class HashTable:
 
   def insert(self, key, value):
     index = self.hash_func(key)
-    if key in self.arr:
-      value = self.arr[index]
-      value += 1
-      LinkedList.append(self.arr[index], value)
-      return self.arr
+    kv_pair = {key : value}
+    counter = self.arr[index].find(kv_pair.keys()) 
+    if counter >= 0:
+      self.arr[index].append(kv_pair.keys())
     else:
-      LinkedList.append(self.arr[index], value)
-      return self.arr
+      self.arr[index].append(kv_pair.keys())
+    return self.arr
 
 
 
@@ -64,12 +63,25 @@ class HashTable:
 
   def print_key_values(self):
     for i in range(len(self.arr)):
-      LinkedList.print_nodes(self.arr[i])
+      if self.arr[i].head == None:
+        print("Empty")
+      else:
+        current = self.arr[i].head
+        for i in range(self.arr[i].length()):
+          for key, value in current.data.items():
+            print(key + ': ' + str(value))
+          current = current.next
 
-
+    
 table = HashTable(8)
-table.insert("key", 1)
-table.insert("dog", 1)
-table.insert("key", 1)
+
+table.insert('cat', 1)
+table.insert('dog', 1)
+table.insert('cot', 1)
+table.insert('cat', 1)
+table.insert('dog', 1)
+table.insert('cot', 1)
+
+
 
 table.print_key_values()

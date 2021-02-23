@@ -55,3 +55,4 @@ class LinkedList:
       for i in range(self.length()):
         print(f'Node {i}: {current.data}')
         current = current.next
+
